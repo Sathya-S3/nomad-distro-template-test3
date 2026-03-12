@@ -53,6 +53,8 @@ constraint-dependencies = ["flatdict>=4.1.0"]
 #remove override when final version is available
 override-dependencies = [
   "nomad-nmr-schema @ git+https://github.com/FAIRmat-NFDI/nomad-schema-plugin-nmr.git@f799401d8981eb9080f18e26d524d8eb7535488e",
+  # Fetch a specific nomad-simulations version
+  "nomad-simulations @ git+https://github.com/nomad-coe/nomad-simulations.git@develop"
 ]
 
 [tool.setuptools.packages.find]
