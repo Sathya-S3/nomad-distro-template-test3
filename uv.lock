@@ -17,7 +17,7 @@ prerelease-mode = "explicit"
 constraints = [{ name = "flatdict", specifier = ">=4.1.0" }]
 overrides = [
     { name = "nomad-nmr-schema", git = "https://github.com/FAIRmat-NFDI/nomad-schema-plugin-nmr.git?rev=d10df31538acbf824affe0e0635407602b9df490" },
-    { name = "nomad-simulations", git = "https://github.com/nomad-coe/nomad-simulations.git?rev=develop" },
+    { name = "nomad-simulations", git = "https://github.com/nomad-coe/nomad-simulations.git?rev=46ed5a5d0632eac22267c9d38e9a4c66f43a5b38" },
 ]
 
 [[package]]
@@ -2744,11 +2744,11 @@ wheels = [
 
 [[package]]
 name = "nomad-simulations"
-version = "0.6.1.dev14+g3ae13cf36"
-source = { git = "https://github.com/nomad-coe/nomad-simulations.git?rev=develop#3ae13cf36e9c2cc4df76bf4795dd70bd8a85d201" }
+version = "0.4.1.dev2+g46ed5a5d0"
+source = { git = "https://github.com/nomad-coe/nomad-simulations.git?rev=46ed5a5d0632eac22267c9d38e9a4c66f43a5b38#46ed5a5d0632eac22267c9d38e9a4c66f43a5b38" }
 dependencies = [
     { name = "matid" },
-    { name = "nomad-lab", extra = ["infrastructure"] },
+    { name = "nomad-lab" },
 ]
 
 [[package]]
