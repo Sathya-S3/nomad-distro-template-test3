@@ -2,6 +2,9 @@ services:
   api_host: "localhost"
   api_base_path: "/nomad-oasis"
 
+actions:
+  enabled: false
+
 oasis:
   is_oasis: true
   uses_central_user_management: false
