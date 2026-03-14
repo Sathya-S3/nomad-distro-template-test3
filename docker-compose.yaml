@@ -98,9 +98,12 @@ services:
       NOMAD_ELASTIC_HOST: elastic
       NOMAD_MONGO_HOST: mongo
       NOMAD_LOGSTASH_HOST: logtransfer
+      NOMAD_TEMPORAL_HOST: temporal
     env_file:
       - ./.env
     depends_on:
+      temporal:
+        condition: service_healthy
       rabbitmq:
         condition: service_healthy
       elastic:
@@ -218,9 +221,12 @@ services:
       NOMAD_MONGO_HOST: mongo
       NOMAD_LOGSTASH_HOST: logtransfer
       NOMAD_NORTH_HUB_HOST: north
+      NOMAD_TEMPORAL_HOST: temporal
     env_file:
       - ./.env
     depends_on:
+      temporal:
+        condition: service_healthy
       rabbitmq:
         condition: service_healthy
       elastic:
@@ -349,6 +355,39 @@ services:
     deploy:
       replicas: 0 # Ensures the service isn't started
 
+  postgresql:
+    container_name: nomad_oasis_postgresql
+    environment:
+      POSTGRES_PASSWORD: temporal
+      POSTGRES_USER: temporal
+    image: docker.io/postgres:16
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+
+  temporal:
+    container_name: nomad_oasis_temporal
+    depends_on:
+      - postgresql
+    environment:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_USER=temporal
+      - POSTGRES_PWD=temporal
+      - POSTGRES_SEEDS=postgresql
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CLI_ADDRESS=temporal:7233
+    image: docker.io/temporalio/auto-setup:1.28
+    healthcheck:
+      test: >
+        bash -c '
+          temporal operator cluster health --address $$(hostname -i):7233 |
+          grep -q "SERVING"
+        '
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
 volumes:
   mongo:
     name: "nomad_oasis_mongo"
@@ -358,6 +397,8 @@ volumes:
     name: "nomad_oasis_rabbitmq"
   keycloak:
     name: "nomad_oasis_keycloak"
+  postgresql:
+    name: "nomad_oasis_postgresql"
 
 networks:
   default:
