@@ -21,7 +21,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 dependencies = [
-  "nomad-lab[infrastructure]>=1.4.1",
+  "nomad-lab[infrastructure]>=1.4.2",
   "nomad-schema-plugin-run>=1.0.1",
   "nomad-parser-plugins-electronic>=1.0",
   "nomad-parser-plugins-atomistic>=1.0.6",
@@ -36,7 +36,8 @@ repository = "https://github.com/sathya-s3/nomad-distro-template-test3"
 [project.optional-dependencies]
 # Add your plugins to the list below.
 plugins = [
- "nomad-north-jupyter>=0.2.1"
+ "nomad-north-jupyter>=0.2.1",
+ "nomad-simulations @ git+https://github.com/nomad-coe/nomad-simulations.git@develop"
   ]
 jupyter = ["jupyter-events"]
 gpu-action = []
