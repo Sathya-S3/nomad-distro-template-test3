@@ -15,6 +15,7 @@ prerelease-mode = "explicit"
 
 [manifest]
 constraints = [{ name = "flatdict", specifier = ">=4.1.0" }]
+overrides = [{ name = "nomad-simulations", specifier = "==0.7.0" }]
 
 [[package]]
 name = "aiofiles"
@@ -2910,11 +2911,15 @@ wheels = [
 
 [[package]]
 name = "nomad-simulations"
-version = "0.7.1.dev17+g530abd8a9"
-source = { git = "https://github.com/nomad-coe/nomad-simulations.git?rev=develop#530abd8a96a906663b23d10a7b39b83e7390ff29" }
+version = "0.7.0"
+source = { registry = "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple" }
 dependencies = [
     { name = "matid" },
     { name = "nomad-lab", extra = ["infrastructure"] },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/45/c9/14648d2d2aaa4626c9ec78f407a3915505868a8076883a61c734ac4ad32b/nomad_simulations-0.7.0.tar.gz", hash = "sha256:5056fdbf1997599f6cabcd56b4aad207fd856328812b0983b2a2815976c9994e", size = 1361168, upload-time = "2026-03-25T07:39:14.491Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e3/f4/58c753f6b1945de5957cc1490009544cc1eb562bb8eddcac596af940f442/nomad_simulations-0.7.0-py3-none-any.whl", hash = "sha256:97767e414bdfd11caa21ef505e8bc875d74ad23d3922c2f5a26d428f24d99d2e", size = 234436, upload-time = "2026-03-25T07:39:13.302Z" },
 ]
 
 [[package]]
